@@ -1,8 +1,6 @@
 package com.Deusley.bookservice.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonIncludeProperties;
-import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
 import java.io.Serializable;
