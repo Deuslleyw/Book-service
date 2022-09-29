@@ -1,5 +1,7 @@
 package com.Deusley.bookservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
@@ -8,6 +10,7 @@ import java.util.Date;
 import java.util.Objects;
 
 @Entity(name = "book")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Book implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -30,7 +33,7 @@ public class Book implements Serializable {
 
     @Transient
     private String currency;
-    @Transient                             
+    @Transient
     private String environment;
 
     public Book(){}

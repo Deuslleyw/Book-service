@@ -1,6 +1,7 @@
 package com.Deusley.bookservice.controller;
 
 import com.Deusley.bookservice.model.Book;
+import com.Deusley.bookservice.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Date;
 
 @RestController
 @RequestMapping("book-service")
@@ -17,6 +17,9 @@ public class BookController {
     @Autowired
     private Environment environment;
 
+    @Autowired
+    private BookRepository repository;
+
     @GetMapping(value = "/{id}/{currency}")
     public Book findBook(
 
@@ -24,9 +27,13 @@ public class BookController {
             @PathVariable ("currency") String currency
     ){
 
+        var book = repository.getReferenceById(id);
+
+        if(book == null) throw new RuntimeException("Book not Found, please retry");
+
         var port = environment.getProperty("local.server.port");
+        book.setEnvironment(port);
 
-        return new Book(1L, "Deusley Neto", new Date(),Double.valueOf(10.5),"O pescador",currency,port);
-
+        return book;
     }
 }
