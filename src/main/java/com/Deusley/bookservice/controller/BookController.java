@@ -3,7 +3,6 @@ package com.Deusley.bookservice.controller;
 import com.Deusley.bookservice.model.Book;
 import com.Deusley.bookservice.proxy.CambioProxy;
 import com.Deusley.bookservice.repository.BookRepository;
-import com.Deusley.bookservice.response.Cambio;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.HashMap;
 
 @Tag(name = "Book endpoint")
 @RestController
@@ -30,7 +26,7 @@ public class BookController {
     @Autowired
     private CambioProxy proxy;
 
-    @Operation(summary = "Find a specific book by your ID")
+    @Operation( summary = "Find a specific book by your ID")
     @GetMapping(value = "/{id}/{currency}")
     public Book findBook(
 
